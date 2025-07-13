@@ -14,7 +14,7 @@ spec:
     app: nginx
     color: blue # initially points to blue pods; patched to green when switching
     matchLabels:
-      color: green
+      color: blue
   ports:
     - protocol: TCP
       port: 80
