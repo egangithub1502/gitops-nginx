@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/egangithub1502/gitops-nginx
 
-    targetRevision: HEAD
+    targetRevision: master
     path: overlays/blue
   destination:
     server: https://kubernetes.default.svc
