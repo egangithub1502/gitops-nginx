@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-blue
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/egangithub1502/gitops-nginx
+
+    targetRevision: HEAD
+    path: overlays/blue
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nginx
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: false  # Disable auto-sync for blue
