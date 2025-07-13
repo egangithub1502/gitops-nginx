@@ -12,9 +12,11 @@ metadata:
 spec:
   selector:
     app: nginx
-    color: blue   # initially points to blue pods; patched to green when switching
+    color: blue # initially points to blue pods; patched to green when switching
+    matchLabels:
+      color: green
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 80
   type: LoadBalancer

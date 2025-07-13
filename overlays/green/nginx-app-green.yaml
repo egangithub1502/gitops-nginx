@@ -8,7 +8,7 @@ metadata:
     color: green
 spec:
   serviceName: "nginx-app-headless"
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: nginx
@@ -20,23 +20,22 @@ spec:
         color: green
     spec:
       containers:
-      - name: nginx
-        image: us-central1-docker.pkg.dev/stm-01/my-app-repo/html-nginx-app:latest
-        ports:
-        - containerPort: 80
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 10
+        - name: nginx
+          image: us-central1-docker.pkg.dev/stm-01/my-app-repo/html-nginx-app:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
   volumeClaimTemplates:
-  - metadata:
-      name: nginx-storage
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: standard
-      resources:
-        requests:
-          storage: 1Gi
-
+    - metadata:
+        name: nginx-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi
